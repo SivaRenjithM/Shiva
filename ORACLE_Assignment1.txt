@@ -1,0 +1,104 @@
+CREATE TABLE department1
+(
+   Departmentno number(2) primary key,
+   Departmentname varchar2(20) unique,
+   Floor number(2),
+   Location varchar2(20)
+);
+desc department
+
+===================================================
+
+CREATE TABLE Employee
+(
+   Empno number(3) primary key,
+   ManagerID number(3),
+   FirstName varchar2(20),
+   LastName varchar2(20),
+   UserID varchar2(20),
+   Departmentno number(2),
+   salary number(5),
+   Commission number(3),
+   Joining date,
+   Designation varchar2(25),
+   constraint fk_10 foreign key(Departmentno) references department(Departmentno)
+   ON DELETE CASCADE
+);
+alter table employee add hra number(5,2)
+alter table employee add pf number(5,2) check(pf<5000)
+
+desc employee
+
+====================================================
+
+Create table customer
+(
+   custno number(3) primary key,
+   Custname varchar2(20),
+   address varchar2(40)
+);
+desc customer
+
+===================================================
+
+Create table order_1
+(
+   orderno number(3) primary key,
+   custno number(3),
+   orderdate date
+);
+desc order_1
+
+==============================================
+
+Create table Orderitem
+(
+   itemID number(3) primary key,
+   OrderNo number(3),
+   itemName varchar2(20),
+   quantity number(2)
+);
+desc Orderitem
+
+=============================================
+
+Create table Course
+(
+   Courseid varchar2(5) primary key,
+   Streamid varchar2(20),
+   Title varchar2(40),
+   Description varchar2(200),
+   Fees number
+);
+desc Course
+
+=====================================================
+
+Create table Batch
+(
+   BatchID varchar2(30),
+   CourseID varchar2(5),
+   BatchName Char(1)
+);
+desc Batch
+
+=====================================================
+
+create table student
+(
+studid varchar(20) primary key,
+lastname varchar(25),
+middlename varchar(30),
+firstname varchar(20),
+dob date default sysdate,
+address varchar(50),
+city varchar(20),
+state varchar(2),
+zipcode varchar(10),
+telephone varchar(10),
+fax varchar(10),
+email varchar(30),
+grade char(1),
+check (grade in('A','A+','A-','B','B+','B-','C','C+','D','D+','D-','F','F+','F-'))
+);
+desc student
